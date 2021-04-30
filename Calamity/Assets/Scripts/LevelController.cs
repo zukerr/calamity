@@ -25,6 +25,7 @@ public class LevelController : MonoBehaviour
     private int enemiesInLevel;
     private bool isGameFinished = false;
     private int killCounter = 0;
+    private int allEnemiesInLevel;
 
     private void Awake()
     {
@@ -34,13 +35,15 @@ public class LevelController : MonoBehaviour
     public void RegisterEnemy()
     {
         enemiesInLevel++;
+        allEnemiesInLevel = enemiesInLevel;
+        killCounterText.text = $"Enemies killed: {killCounter}/{allEnemiesInLevel}";
     }
 
     public void EnemyEliminated()
     {
         enemiesInLevel--;
         killCounter++;
-        killCounterText.text = $"Enemies killed: {killCounter}";
+        killCounterText.text = $"Enemies killed: {killCounter}/{allEnemiesInLevel}";
         if(IsGameComplete())
         {
             //TO-DO
